@@ -1,19 +1,25 @@
+
 import { Injectable } from '@nestjs/common';
 import { CreateTravelDto } from './dto/create-travel.dto';
 import { UpdateTravelDto } from './dto/update-travel.dto';
 
 @Injectable()
 export class TravelService {
+  private travels = [
+    { id: 1, name: 'To China', price: 9000 },
+    { id: 2, name: 'To Morocco', price: 4000 },
+  ];
+
   create(createTravelDto: CreateTravelDto) {
     return 'This action adds a new travel';
   }
 
   findAll() {
-    return `This action returns all travel`;
+    return this.travels;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} travel`;
+    return this.travels.find(travel => travel.id === id);
   }
 
   update(id: number, updateTravelDto: UpdateTravelDto) {
